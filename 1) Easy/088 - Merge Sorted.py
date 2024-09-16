@@ -29,9 +29,9 @@ class Solution(object):
                 nums1[index_merge]=nums2[index_nums2]
                 index_nums2 -=1   
             index_merge -= 1 # after every iteration, we inserted one element from the last index
-        
-sol = Solution()
 
+#*-------Tests-------#
+sol = Solution()
 nums1=[1,2,3,0,0,0]
 m= 3
 nums2 = [2,5,6]
@@ -39,7 +39,7 @@ n=3
 sol.merge(nums1, m, nums2, n)
 print(nums1)
 
-# Time Complexity:
-# O(m + n): We iterate through each element of nums1 and nums2 once.
-# Space Complexity:
-# O(1): The algorithm uses constant extra space because we modify nums1 in place.
+#^ Time Complexity:
+#^ O(m + n): We iterate through each element of nums1 and nums2 once.
+#^ Space Complexity:
+#^ O(1): The algorithm uses constant extra space because we modify nums1 in place.

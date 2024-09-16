@@ -5,7 +5,7 @@ class Solution(object):
         :rtype: int
         """
         
-        # create a mapping  of Roman Numerals to integers
+        # Dictionary in constant length, Dictionary lookup = O(1) time complexity
         roman_to_int={
             'I':1,'V':5,'X':10,'L':50,
             'C':100,'D':500,'M':1000
@@ -17,7 +17,7 @@ class Solution(object):
         # Loop through each character in the string
         for char in reversed(s):
             current_value = roman_to_int[char]
-
+            # Roman way of subtraction
             if current_value < prev_value:
                 total -= current_value
             else: 
@@ -34,3 +34,8 @@ test3=sol.romanToInt("MCMXCIV")
 print(f"Test1: {test1}")
 print(f"Test2: {test2}")
 print(f"Test3: {test3}")
+
+#^ Time Complexity:
+#^ O(n) - Dictionary loop in constant time and one loop in input size 
+#^ Space Complexity: 
+#^ O(1) - Small dictionary in constant size and few vars

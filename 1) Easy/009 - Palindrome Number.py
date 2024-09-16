@@ -17,15 +17,17 @@ class Solution:
         # Check if the original number is equal to the reversed number
         return original == reversed_num
 
-
 #*-------Tests-------#
 sol = Solution()
 test1=sol.isPalindrome(121) # Output: True
 test2=sol.isPalindrome(-121)# Output: False
 test3=sol.isPalindrome(10)   # Output: False
 test4=sol.isPalindrome(4984)  # Output: False
-
 print(f"Test1:{test1}")
 print(f"Test2:{test2}")
 print(f"Test3:{test3}")
 print(f"Test3:{test4}")
+#^ Time Complexity:
+#^ O(log10(x)) - number of iterations is proportional to the number of digits in the input integer x, logarithmic in terms of x.
+#^ Space Complexity:
+#^ O(1) - we use a constant amount of extra space (a few integer variables).
