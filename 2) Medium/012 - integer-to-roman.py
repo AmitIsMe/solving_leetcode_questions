@@ -24,7 +24,7 @@ class Solution(object):
         
         result=""
         
-        for roman_key,int_value in romanNumerals.items():
+        for roman_key,int_value in romanNumerals:
             while user_num>=int_value:
                 result+=roman_key
                 user_num-=int_value
