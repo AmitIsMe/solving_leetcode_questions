@@ -7,7 +7,7 @@ class TreeNode(object):
 
 class Solution(object):
     def __init__(self):
-        self.maxSum = -1 * float("infinity")
+        self.maxSum = -1 * float("inf")
     
     def maxPathSum(self, root):
         """

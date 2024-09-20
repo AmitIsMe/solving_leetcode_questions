@@ -7,7 +7,7 @@ class Solution:
             countT[letterKey]= 1 + countT.get(letterKey,0)
         
         have, need = 0,len(countT)
-        res,resLen = [-1,-1], float("infinity")
+        res,resLen = [-1,-1], float("inf")
         left = 0
         for right in range(len(s)): #*
             letter = s[right]
@@ -27,7 +27,7 @@ class Solution:
                     have -=1
                 left+=1
         left,right = res
-        return s[left:right+1] if resLen != float("infinity") else ""
+        return s[left:right+1] if resLen != float("inf") else ""
 
 
 #*-------Tests-------#
