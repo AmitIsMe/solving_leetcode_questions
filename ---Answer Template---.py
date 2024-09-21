@@ -1,8 +1,8 @@
 
 #*-------Tests-------#
 sol = Solution()
-array1 = [1,0,2]
-test1=sol.candy(array1 )
+
+test1=sol.candy()
 print(f"{test1}")
 
 #*-------------------#
