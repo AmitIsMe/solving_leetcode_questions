@@ -15,28 +15,28 @@ class Solution:
     def maximumScore(self, nums: List[int], k: int) -> int:
         n = len(nums)
         
-        left = right = k
-        min_val = nums[k]
-        max_score =min_val
+        left = right = k    #! right and left are extending from the k (which is index) 
+        min_val = nums[k]   #! temp that keep track on minValues
+        max_score =min_val  #~ START case scenario 
         
         while(0 < left  or right < n-1):
-            if left == 0:
+            #~ END cases
+            if left == 0:      #~ END case: no left to go
                 right+=1
-            elif right == n-1:
+            elif right == n-1: #~ END cases: no right to go
                 left -= 1
-            else:
+            else: #~ between the array
                 if nums[left-1] > nums[right+1]:
                     left -= 1
                 else:
                     right +=1
             
-            # Update the minimum value in the current subarray
+            # Update the minimum value in the current subArray
             min_val = min(min_val, nums[left], nums[right])
             
             current_score  = min_val * (right-left+1)
             max_score = max(max_score,current_score)
         return max_score
-
 
 #*-------Tests-------#
 sol = Solution()
