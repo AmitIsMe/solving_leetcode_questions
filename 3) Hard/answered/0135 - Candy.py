@@ -1,16 +1,12 @@
 class Solution(object):
     def candy(self, ratings):
-        """
-        :type ratings: List[int]
-        :rtype: int
-        """
         # create a "Dummy array" in which every kid get at least one candy
-        candies= [1] * len(ratings)
+        candies= [1] * len(ratings) #? helper array
         # 1) Left -> Right
         for i in range(1,len(ratings)):
             if ratings[i-1]<ratings[i]:
                 candies[i]= candies[i-1]+1
-                
+        
         # 2) Right -> Left
         for i in range(len(ratings)-2,-1,-1):
             if ratings[i]>ratings[i+1]:

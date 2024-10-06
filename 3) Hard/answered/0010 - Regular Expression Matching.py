@@ -1,12 +1,6 @@
 class Solution(object):
     def isMatch(self, s, p):
-        """
-        :type s: str
-        :type p: str
-        :rtype: bool
-        """
-        iteration=1
-        
+        iteration=1 #? for debug only
         s_len, p_len = len(s), len(p)
         matrix = [[False] * (p_len + 1) for _ in range(s_len + 1)]
         #~ Base case: An empty string matches an empty pattern
@@ -20,8 +14,8 @@ class Solution(object):
                 # Propagate True/False if pattern up till now, could be an empty string
                 matrix[0][j] = matrix[0][j - 2]
 
-        for row in range(1, s_len + 1):     # Iterate over - s.char's = rows
-            print(f"iteration:{iteration}")
+        for row in range(1, s_len + 1):      # Iterate over - s.char's = rows
+            print(f"iteration:{iteration}") #? for debug only
             for col in range(1, p_len + 1):  # Iterate over - pattern char's = columns
                 
                 #~ Case 2: current p.char is NOT '*' => compare CURRENT CHAR's
@@ -43,11 +37,11 @@ class Solution(object):
                     if p[col - 2] == s[row - 1] or p[col - 2] == '.':
                         matrix[row][col] = matrix[row][col] or matrix[row - 1][col]
             # Print each row in the matrix
-            iteration+=1
-            for row in matrix:
-                print(row)
-            print(f"")
-        # The answer is in last cell of the matrix
+            iteration+=1        #? for debug only
+            for row in matrix:  #? for debug only
+                print(row)      #? for debug only
+            print(f"")          #? for debug only
+        #* The answer is in last cell of the matrix
         return matrix[s_len][p_len]
 
 #*-------Tests-------#

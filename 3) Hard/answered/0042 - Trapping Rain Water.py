@@ -6,11 +6,11 @@ class Solution(object):
         """
         n = len(height)
         r_wall =l_wall = 0
-        max_right=[0]*(n)
-        max_left = [0]*(n)
+        max_right=[0]*(n) # helper array
+        max_left = [0]*(n)# helper array
         
         for i in range(n):
-            j= -i-1 # as i go forward 
+            j= -i-1 # as i go forward, j go backwards
             max_left[i]=l_wall
             max_right[j]=r_wall
             l_wall=max(l_wall,height[i])

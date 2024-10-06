@@ -3,20 +3,6 @@ from typing import List
 
 class Solution:
     def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
-        #! brute force (O(K*(n-k))
-        # output =[]
-        # numsLen = len(nums)
-        # for i in  range( numsLen-k+1):
-        #     windowMax = -1 * float ("inf")
-        #     for j in range(k):
-        #         curr = i+j
-        #         currVal = nums[curr]
-        #         if currVal>windowMax:
-        #             windowMax = currVal
-        #     output.append(windowMax)
-        # return output
-        
-        #* optimal solution 
         output =[]
         q= collections.deque() # will store array indexes
         l=r=0
@@ -35,7 +21,6 @@ class Solution:
             r += 1
         return output
 
-
 #*-------Tests-------#
 sol = Solution()
 nums, k = [1,3,-1,-3,5,3,6,7], 3
@@ -44,7 +29,6 @@ print(f"{test1}")
 nums,k = [1], 1
 test2=sol.maxSlidingWindow(nums,k )
 print(f"{test2}")
-
 #*-------------------#
 #^ Time Complexity:
 #^ 

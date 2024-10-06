@@ -1,13 +1,9 @@
 import collections
 class Solution(object):
     def maxPoints(self, points):
-        """
-        :type points: List[List[int]]
-        :rtype: int
-        """
-        #~ edge case 
-        if len(points) < 2:
+        if len(points) < 2: #~ edge case 
             return len(points)
+        
         # helper function
         def gcd(a, b):
             while b:
@@ -15,7 +11,6 @@ class Solution(object):
             return a
         
         res = 0
-        
         for i in range(len(points)):
             p1 = points[i]
             count = collections.defaultdict(int)
@@ -36,9 +31,7 @@ class Solution(object):
                 slope = (dy // g, dx // g)
                 count[slope]+=1 #! we found another point, increment the max
                 current_max = max(current_max, count[slope])
-                
             res = max(res, current_max + duplicate +1) #! increment last time, to add the compared point to the current slope
-                
         return res
 
 #*-------Tests-------#

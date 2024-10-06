@@ -3,7 +3,7 @@ class Solution:
         if t == "": return "" #~ Edge case
         countT,window = {},{}
         
-        for letterKey in t:              #* t is the requested chars
+        for letterKey in t:              #* t = requested chars
             countT[letterKey]= 1 + countT.get(letterKey,0)
         
         have, need = 0,len(countT)
@@ -35,7 +35,6 @@ sol = Solution()
 array1 = ["ADOBECODEBANC","ABC"]
 test1=sol.minWindow(array1[0],array1[1] )
 print(f"{test1}")
-
 #*-------------------#
 #^ Time Complexity:
 #^ 
