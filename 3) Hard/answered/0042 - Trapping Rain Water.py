@@ -1,24 +1,25 @@
 class Solution(object):
     def trap(self, height):
-        """
-        :type height: List[int]
-        :rtype: int
-        """
         n = len(height)
-        r_wall =l_wall = 0
-        max_right=[0]*(n) # helper array
-        max_left = [0]*(n)# helper array
+        r_wall = l_wall = 0
+        max_right= [0]*(n) # added array, store the maximum height to the right of each column
+        max_left = [0]*(n) # helper array, store the maximum height to the left of each column
         
+        # First loop: populate max_left and max_right arrays
         for i in range(n):
             j= -i-1 # as i go forward, j go backwards
-            max_left[i]=l_wall
-            max_right[j]=r_wall
+            max_left[i] = l_wall # Store the highest wall encountered on the left side up to index i
+            max_right[j] = r_wall # Store the highest wall encountered on the right side up to index j (from the end)
             l_wall=max(l_wall,height[i])
             r_wall=max(r_wall,height[j])
-        sum_trap_water=0
+        sum_trap_water = 0  # Initialize variable to accumulate the total trapped water
+        
+        # Second loop: calculate the trapped water
         for i in range(n):
-            pot = min(max_left[i],max_right[i])
-            sum_trap_water+=max(0,pot-height[i])
+            # The water trapped at index i:
+            # is determined by the shorter of the two walls (left and right)
+            potential_water = min(max_left[i],max_right[i])
+            sum_trap_water += max(0,potential_water - height[i])
         return sum_trap_water
     
 #*-------Tests-------#
