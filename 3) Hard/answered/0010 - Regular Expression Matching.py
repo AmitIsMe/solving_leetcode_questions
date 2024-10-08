@@ -4,7 +4,7 @@ class Solution(object):
         
         s_len, p_len = len(s), len(p)
         
-        # Initialize a DP matrix where dp[i][j] is True if s[0:i] matches p[0:j]
+        # Initialize a dynamic prog matrix, where dp[i][j] is True if s[0:i] matches p[0:j]
         # We add 1 extra index, to represents an empty pattern and string.
         matrix = [[False] * (p_len + 1) for _ in range(s_len + 1)]
         

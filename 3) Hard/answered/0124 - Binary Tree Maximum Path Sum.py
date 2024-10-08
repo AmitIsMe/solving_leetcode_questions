@@ -10,18 +10,20 @@ class Solution(object):
         self.maxSum = -1 * float("inf")
     
     def maxPathSum(self, root):
-        self.postOrder(root)
+        self.postOrderDfs(root)
         return self.maxSum
     
-    def postOrder(self,root):
-        if root == None: return 0
-        # limit negative values to return 0
-        left =max(0,self.postOrder(root.left))
-        right =max(0,self.postOrder(root.right))
+    def postOrderDfs(self,root):
+        if root == None:
+            return 0
         
-        #! update global maximum path to self OR current sub tree
+        # limit the returned negative values of a leaf node to 0
+        left =  max(0,self.postOrderDfs(root.left))
+        right = max(0,self.postOrderDfs(root.right))
+        
+        # update global maximum path to self OR current sub tree
         self.maxSum = max(self.maxSum,(left+right+root.val))
-        #* return the max between child nodes and father node
+        # return the max between child nodes and father node
         return max(left,right)+root.val
 
 #*-------Tests-------#

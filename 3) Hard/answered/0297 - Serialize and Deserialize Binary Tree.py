@@ -6,35 +6,44 @@ class TreeNode(object):
         self.right = None
 
 class Codec:
-    # accepts tree and convert it to an array of STRINGS!
+    # input: root node of a tree
+    # output: array of STRINGS that will be join with a ", " between the numbers in to a single string
     def serialize(self, root):
         res =[]
-        def dfs(node):
-            if not node:
-                res.append("N")
-                return
-            res.append(str(node.val)) # convert int to string
-            dfs(node.left)
-            dfs(node.right)
-        dfs(root)
-        return ", ".join(res) #returns array
-    
-    #! accepts array of strings, (after a Tree got converted to array)
-    def deserialize(self, data):
-        vals = data.split(", ")
-        self.i = 0 # global class scope variable to control iteration in the recursion process 
         
-        def dfs():
-            if vals[self.i] == "N":
-                self.i +=1
+        def preOrderDfs(node):
+            if not node:        #base case: node is null
+                res.append("N") # represent null node
+                return
+            
+            # current nude is not null
+            res.append(str(node.val)) # convert the number to a string
+            preOrderDfs(node.left)       # because we do preOrder dfs, continue down the left subtree recursively 
+            preOrderDfs(node.right)
+        
+        preOrderDfs(root)        # start the preOrder process 
+        return ", ".join(res) # returns the array as a single string
+    
+    # input:  array of STRINGS, joined with a ", " between the numbers in to a single string
+    # output: root node of a tree
+    def deserialize(self, data):
+        values = data.split(", ") # split the single string, to array of values
+        
+        self.i = 0 # class scope variable, controls iterations in the recursion process from the first index
+        
+        def preOrderDfs(): # no need to pass variable because its use the class variable
+            #if the array of values, at the global index
+            if values[self.i] == "N": # our agreed null flag
+                self.i +=1            # even though the value is null, keep moving on the values array
                 return None
-            node = TreeNode(int(vals[self.i]))
-            self.i += 1
-            node.left =dfs()
-            node.right =dfs()
+            
+            node = TreeNode(int(values[self.i])) # convert the string value to an int treenode
+            self.i += 1                # move position on the values array, after we have the parent node
+            node.left  = preOrderDfs() # because we do preOrder dfs, continue down the left subtree recursively 
+            node.right = preOrderDfs()
             return node
-        return dfs()
-
+        
+        return preOrderDfs() # start the preOrder process 
 
 #*-------Tests-------#
 #! serialize accepts Tree as an inputs

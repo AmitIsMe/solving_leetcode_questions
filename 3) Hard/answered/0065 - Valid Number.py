@@ -1,5 +1,10 @@
 class Solution:
     def isNumber(self, s: str) -> bool:
+        # Initialize flags to track what has been encountered in the string:
+        # digit: indicates if a digit has been encountered
+        # dec:   indicates if a decimal point ('.') has been encountered
+        # e:     indicates if an exponent ('e' or 'E') has been encountered
+        # symbol:indicates if a sign ('+' or '-') has been encountered
         digit,dec,e,symbol = False,False,False,False
 
         for c in s:
@@ -7,32 +12,36 @@ class Solution:
             if c in "0123456789":
                 digit = True
             
-            #~ 2) case: c -> symbol
+            #~ 2) case: c -> symbol ('+' or '-' sign)
             elif c in "+-":
+                # A sign is only allowed at the beginning or immediately after an exponent
                 if symbol or digit or dec:
-                    return False #! could not accept 2 symbols in a row, or digit/'.' and then symbol
+                    return False # Invalid if sign appears after digit or decimal point
                 else:
                     symbol=True #* a valid place for a symbol
             
             #~ 3) case: c -> exponent
             elif c in "Ee":
+                # Exponent is valid only if there was a number before it, and the exponent cannot appear twice in arrow 
                 if not digit or e:
                     return False #! valid number could not start with exponent (without base number), or 2 'e' in a row
                 else:
-                    e=True  #* valid place to use exponent
-                    symbol= False # 1. we accept optional symbol after exponent
-                    dec = False #   2. we accept symbol after exponent
-                    digit = False #! valid number could not end with exponent operator without a number next iteration
+                    e=True        #* valid use of an exponent
+                    symbol= False # 1. we allow to accept optional symbol after exponent
+                    dec = False   # 2. No decimals allowed after an exponent
+                    digit = False # 3. we Must get at least 1 digit after the exponent, in order to build a valid number
             #~ 4) case: c -> Decimal
             elif c=='.':
+                # '.' cannot appear twice in arrow, '.' could not a appear after 'e'
                 if dec or e:
-                    return False # 2 '.' are not valid, '.' could not a curr after 'e'
+                    return False 
                 else:
                     dec = True #* valid place to put the decimal point 
-            #~ 5) case: c -> EverythingElse
+            
+            #~ 5) case: c -> invalid character
             else:
                 return False
-            
+        
         return digit
 #*-------Tests-------#
 sol = Solution()
@@ -66,6 +75,6 @@ for str in strings:
 
 #*-------------------#
 #^ Time Complexity:
-#^ 
+#^      O(n)
 #^ Space Complexity: 
-#^ 
+#^      O(1)

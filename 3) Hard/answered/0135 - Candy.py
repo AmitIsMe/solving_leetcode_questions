@@ -1,37 +1,34 @@
 class Solution(object):
     def candy(self, ratings):
-        # create a "Dummy array" in which every kid get at least one candy
-        candies= [1] * len(ratings) #? helper array
-        # 1) Left -> Right
+        # Initialize an array where each child gets at least one candy initially
+        candies= [1] * len(ratings) # helper array
+        # First pass: Traverse from left to right
+        # Ensure that any child with a higher rating than the one BEFORE, gets more candies than the previous child
         for i in range(1,len(ratings)):
             if ratings[i-1]<ratings[i]:
                 candies[i]= candies[i-1]+1
         
-        # 2) Right -> Left
-        for i in range(len(ratings)-2,-1,-1):
+        # Second pass: Traverse from right to left
+        # Ensure that any child with a higher rating than the NEXT one, also gets more candies than the next child
+        
+        for i in range(len(ratings)-2,-1,-1): #skip the last index because it has no neighbor
             if ratings[i]>ratings[i+1]:
-                candies[i]=max(candies[i],candies[i+1]+1)
-        #     print(candies[i], end=", ")
-        # print()
+                # the secrete to this question:
+                candies[i]=max(candies[i],candies[i+1]+1)# Use max to keep the higher candy count between the two passes
         return sum(candies)
 
 #*-------Tests-------#
 sol = Solution()
-array1 = [1,0,2]
-# array2 = [1,2,2]
-array2 = [2,3,4,5]
-array3=[1,3,2,2,1]
-array4=[1,2,87,87,87,2,1]
-test1=sol.candy(array1 )
-print(f"array1: {array1}: {test1}")
-test2=sol.candy(array2)
-print(f"array2: {array2}: {test2}")
-test3=sol.candy(array3)
-print(f"array3: {array3}: {test3}")
-test4=sol.candy(array4)
-print(f"array4: {array4}: {test4}")
+
+#initial=[1,1,1,1,1,1]
+array=   [5,4,3,5,6,2]
+
+#L2R    =[1,1,1,2,3,1]
+#R2L    =[3,2,1,2,3,1]
+test=sol.candy(array )
+print(f"array: {array}: {test}")
 
 #^ Time Complexity:
-#^ O(n), where n is the number of children, since we make two linear passes over the array. 
+#^      O(n),n = number of children, since we make two linear passes over the array. 
 #^ Space Complexity: 
-#^ O(n) due to the extra candies array.
+#^      O(n) due to the extra candies array.
