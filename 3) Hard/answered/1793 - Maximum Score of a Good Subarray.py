@@ -17,13 +17,13 @@ class Solution:
         
         left = right = k    #! right and left are extending from the k (which is index) 
         min_val = nums[k]   #! temp that keep track on minValues
-        max_score =min_val  #~ START case scenario 
+        max_score =min_val  # start accumulating values from the k index 
         
         while(0 < left  or right < n-1):
             #~ END cases
-            if left == 0:      #~ END case: no left to go
+            if left == 0:      #~ END case: no left to go = expand to the right
                 right+=1
-            elif right == n-1: #~ END cases: no right to go
+            elif right == n-1: #~ END cases: no right to go = expand to the left
                 left -= 1
             else: #~ between the array
                 if nums[left-1] > nums[right+1]:

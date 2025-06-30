@@ -4,13 +4,13 @@ class Solution:
         # valid pair = (Pi,Di)
         # x * (x-1) = choices 
         # x * (x-1) / 2  = VALID choices 
-        slots = 2*n # number of slots to fill
+        slots = 2*n # number of slots to fill (fetch and deliver)
         res = 1
         while slots > 0:
-            validChoices = slots * (slots -1) // 2
+            validChoices = slots * (slots -1) // 2 # probability formula for this type of question
             res *= validChoices
             slots -=2
-        return res % (10**9 +7)
+        return res % (10**9 +7) # question requirement
 
 #*-------Tests-------#
 sol = Solution()

@@ -1,15 +1,15 @@
 
 class Solution:
     def solveNQueens(self, n: int) -> list[list[str]]:
-        col_set = set()
-        neg_diag_set= set()  # Tracks the diagonal where row - col is constant (↘)
-        pos_diag_set = set() # Tracks the diagonal where row + col is constant (↗)
+        col_set = set()      # (↕)
+        neg_diag_set= set()  # Tracks the diagonal where (row - col) is constant (↘)
+        pos_diag_set = set() # Tracks the diagonal where (row + col) is constant (↗)
         
         res=[]
         # Initialize an empty chess board, where "." represents an empty cell
         board=[["."]*n for row in range(n)] 
         
-        # Helper function to perform backtracking and explore all possible queen placements row by row
+        # Helper function: to perform backtracking and explore all possible queen placements row by row
         def backtrack(r):
             # Exit case: If we've placed queens on all rows, it's a valid solution
             if r == n: #~  case

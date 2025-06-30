@@ -27,11 +27,11 @@ class Solution:
             # Update the count of the current character in the window
             window[letter] = 1 + window.get(letter,0)
             
-            # If the current character is in 't' and its count in the window matches 'countT'
+            # If the current char, is in 't', and its count in the window matches 'countT'
             if letter in countT and window[letter] == countT[letter]:
                 have +=1 # This character's requirement is now satisfied
             
-            # as long as we havent reached the end of string 's',
+            # as long as we have'nt reached the end of string 's',
             # continue to change leftmost pointer to find if there is more complete appearances ahead
             while have == need:
                 # if current window size, is smaller then the global minimum 
